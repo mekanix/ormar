@@ -23,7 +23,7 @@ def lifespan(config):
 def init_tests(config, scope="module"):
     @pytest.fixture(autouse=True, scope=scope)
     def create_database():
-        config.engine = sqlalchemy.create_engine(config.database.url._url)
+        config.engine = sqlalchemy.create_engine(config.database.url._url, echo=True)
         config.metadata.create_all(config.engine)
 
         yield
